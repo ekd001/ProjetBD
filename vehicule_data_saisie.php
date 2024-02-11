@@ -6,6 +6,7 @@
     <title>Informations sur les véhicules</title>
 </head>
 <body>
+    <h2>Informations sur le vehicule</h2>
     <form method="post" action="vehicule_data.php">
         <p>
             <label for="matricule">Matricule : </label>
