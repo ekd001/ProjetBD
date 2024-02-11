@@ -67,11 +67,12 @@
         <?php
             if(isset($_SESSION['connecter'])){
                 ?>
-                 <a href="connexion.php" id='connexion'>Connectez vous</a>
+                 
+                 <a href="deconnexion.php" id='deconnexion'>Deconnecter vous</a>
                  <?php
             }else{
                 ?>
-                <a href="deconnexion.php" id='deconnexion'>Deconnecter vous</a>
+                <a href="connexion.php" id='connexion'>Connectez vous</a>
                 <?php
             }
         ?>

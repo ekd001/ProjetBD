@@ -1,7 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+          
+         section{
+                margin-top : 200px;
+                font-size:medium;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                text-align:center;
+            }
+
+            .actuel{
+            background-color:#00A2E8;
+            border:1px solid #00A2E8; ;
+            height:70px;
+            width:200px;
+            border-radius:10px;
+            color:white;
+            text-decoration: none;
+            padding : 10px;
+        }
+    </style>
+</head>
+<body>
 <?php
 try{
     require_once("connect.inc.php");
-
+    include("header.php");
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $adresse = $_POST['adresse'];
@@ -17,17 +45,30 @@ try{
         'contact' => $contact,
         'vehicule_mat' => $matricule
     ));
-    echo"<h2>Le conducteur est enrégistrer </br></h2>";
+    
     ?>
-    <h2>Vouliez vous ajouter un autre conducteur à votre véhicule</br></h2>
-    <a href="conducteur_data_saisie.php">oui</a>
+    <section>
+        <p>Le conducteur est enrégistrer </br></p>
+        <p>Vouliez vous ajouter un autre conducteur à votre véhicule</br></p>
+        <a href="conducteur_data_saisie.php" class="actuel">oui</a>
+        <a href="information_validation.php" class="actuel">Non</a>
+
+    </section>
+   
 <?php
 }catch(Exception $e)
 {
-    echo "<h2>La matricule de vehicule n'existe pas dans nos données ou il y'a erreur de saisie</br>ou le conducteur existe déja</h2>";
+    
     ?>
-    <a href="conducteur_data_saisie.php">Retour à la saisie</a>
+    <section>
+        <p>La matricule de vehicule n'existe pas dans nos données ou il y'a erreur de saisie</br>ou le conducteur existe déja</p>
+        <a href="conducteur_data_saisie.php" class="actuel">Retour au formulaire</a>
+    </section>
+    
 <?php
 }
    
 ?>
+
+</body>
+</html>

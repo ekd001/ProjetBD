@@ -1,14 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+          
+         section{
+                margin-top : 200px;
+                font-size:medium;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                text-align:center;
+            }
+
+            .actuel{
+            background-color:#00A2E8;
+            border:1px solid #00A2E8; ;
+            height:70px;
+            width:200px;
+            border-radius:10px;
+            color:white;
+            text-decoration: none;
+            padding : 10px;
+        }
+    </style>
+</head>
+<body>
+
 <?php
      //Essayer de se connecter à la base de données
      require_once("connect.inc.php");
-     
+     include("header.php");
     //recuperation des données
     $matricule = $_POST['matricule'];
     $type_v = $_POST['type'];
     $marque = $_POST['marque'];
     $modele = $_POST['modele'];
     $puissance = $_POST['puissance']; 
-    $id = $_POST['identifiant'];
+    $id = $_SESSION['numero'];
     $police = 1;
     
     try{
@@ -25,9 +54,23 @@
             'id'=>$id,
             'police'=>$police
         ));
-        echo "<h2>Votre $type_v a été bien enrégistrer</h2>";
+        ?>
+        <section>
+            <p>Votre <?php echo "$type_v";?> a été bien enrégistrer</p>
+            <p>Si vous n'êtes pas seul a utiliser le vehicule alors ajouter un conducteur</p>
+            <a href="conducteur_data_saisie.php" class="actuel">Ajouter</a>
+        </section>
+        <?php
     }catch(Exception $e){
-        echo "<h2>Erreur de saisie ou cette matricule existe deja dans notre base</h2>";
+        ?>
+        <section>
+        <p>Erreur de saisie ou la matricule existe déjà</p>
+        <a href="vehicule_data_saisie.php" class="actuel">Retour au formulaire</a>
+        </section>
+        <?php
     }
    
 ?>
+
+</body>
+</html>

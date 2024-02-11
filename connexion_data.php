@@ -35,8 +35,7 @@
      $password = $_POST['password'];
     
     try{
-   
-    $connecter = false;
+        
         $req = $bd->prepare("SELECT * FROM client WHERE email = :email AND password = :password");
         $req->execute(array(
             'email'=>$email,
@@ -47,15 +46,24 @@
             $nom = $data['noms'];
             $prenoms = $data['prenoms'];
             $adresse = $data['adresse'];
-            $type = $data['type'];
+            $contact = $data['contact'];
+            $image = $data['image'];
+            $image_type = $data['image_type'];
             $connecter = true;
+            
         }
         if($num_assure > 0){
+            
             session_start();
-
             $_SESSION['bienvenue'] = "Heureux de vous voir </br>".$nom;
             $_SESSION['numero'] = $num_assure;
-            $_SESSION['connecter'] = $connecter;
+            $_SESSION['nom'] = $nom;
+            $_SESSION['prenoms'] = $prenoms;
+            $_SESSION['adresse'] = $adresse;
+            $_SESSION['contact'] = $contact;
+            $_SESSION['image'] = $image;
+            $_SESSION['image_type'] = $image_type;
+            $_SESSION['connecter'] = true;
             header("Location:acceuil.php");
             exit;
         }else{

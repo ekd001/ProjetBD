@@ -38,6 +38,13 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color:#00A2E8;
         }
+        .desactive{
+            text-decoration: none;
+            margin-left : 40px;
+            font-weight:500;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color:#99D9EA;
+        }
 
         .active:hover{
             border-bottom:2px solid;
@@ -47,13 +54,37 @@
 </head>
 
 <body>
+    <?php
+        $connecter;
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(isset($_SESSION['connecter'])){
+            $connecter = true;
+        }else{
+            $connecter = false;
+        } 
+    ?>
     <header>
         <a href="acceuil.php" class="logo">AssuranceM</a>
         <div>
             <ul class="options">
-                <li><a href="#" class="active">Assurer</a></li>
-                <li><a href="#" class="active">Notifications</a></li>
-                <li><a href="#" class="active">Profil</a></li>
+                <?php
+                    if($connecter){
+                        ?>
+                         <li><a href="vehicule_data_saisie.php" class="active">Assurer</a></li>
+                         <li><a href="#" class="active">Notifications</a></li>
+                         <li><a href="profil.php" class="active">Profil</a></li>
+                        <?php
+                    }else{
+                        ?>
+                        <li><a href="acceuil.php" class="desactive">Assurer</a></li>
+                        <li><a href="acceuil.php" class="desactive">Notifications</a></li>
+                        <li><a href="acceuil.php" class="desactive">Profil</a></li>
+                        <?php
+                    }
+               ?>
+                
             </ul>
         </div>
     </header>
