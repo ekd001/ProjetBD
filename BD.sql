@@ -8,7 +8,7 @@ CREATE TABLE Client (
 	email VARCHAR(50) UNIQUE,
 	password VARCHAR(10) UNIQUE,
 	image BYTEA,
-	image_type VARCHAR(5),
+	image_type VARCHAR(20),
 	PRIMARY KEY (num_assure)); 
 	
 CREATE TABLE Police (
