@@ -16,9 +16,16 @@
         }
         .text{
             font-size:50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+            margin-bottom:5px;  
+        }
+        p{
+            font-size:medium;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   
+            margin-bottom: 30px;
         }
         #connexion{
+            
             text-decoration:none;
             border: 1px solid #00A2E8;
             padding:10px;
@@ -72,6 +79,7 @@
                  <?php
             }else{
                 ?>
+                <p>Connectez vous pour effectuer une demande d'assurance</p>
                 <a href="connexion.php" id='connexion'>Connectez vous</a>
                 <?php
             }

@@ -79,3 +79,22 @@ CREATE TABLE notification(
 	dt_message DATE NOT NULL,
 	FOREIGN KEY(id_client) REFERENCES Client(num_assure) ON DELETE CASCADE
 );
+
+
+
+
+CREATE OR REPLACE FUNCTION mat_exist()
+RETURNS TRIGGER AS $$
+BEGIN 
+	 IF EXISTS (SELECT 1 FROM vehicule WHERE matricule = NEW.vehicule_mat) THEN
+        RETURN NEW;
+    ELSE
+        RAISE EXCEPTION 'la matricule n''existe pas dans nos données';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER mat_existe
+BEFORE INSERT ON Conducteur
+FOR EACH ROW
+EXECUTE FUNCTION mat_exist();
