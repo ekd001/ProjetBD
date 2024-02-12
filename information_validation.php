@@ -28,9 +28,10 @@
 <?php include("header.php");
     require_once("connect.inc.php");
     $id = $_SESSION['numero'];
-     
-    $req = $bd->prepare("INSERT INTO notification(num,id_client,message,dt_message,type) VALUES(DEFAULT,:id,'Demande est en attente',CURRENT_DATE,'en attente');");
-    $req->execute(array('id'=>$id));
+    $current_date = date("Y-m-d");
+
+    $req = $bd->prepare("INSERT INTO notification(num,id_client,message,dt_message,type) VALUES(DEFAULT,:id,'Demande est en attente',:date_c,'en attente');");
+    $req->execute(array('id'=>$id,'date_c'=>$current_date));
 ?>
     <section>
         <p>Vous passerez à l'agence pour le dêpot de vos pieces relatives à vous, votre vehicule et saisie pour la confirmation.</p>
