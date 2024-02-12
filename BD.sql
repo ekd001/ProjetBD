@@ -71,3 +71,11 @@ CREATE TABLE RattachementContrat (
 	FOREIGN KEY(num_police) REFERENCES Police ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(num_dossier) REFERENCES Sinistre ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+CREATE TABLE notification(
+	num SERIAL NOT NULL,
+	id_client INT NOT NULL,
+	message TEXT NOT NULL,
+	dt_message DATE NOT NULL,
+	FOREIGN KEY(id_client) REFERENCES Client(num_assure) ON DELETE CASCADE
+);

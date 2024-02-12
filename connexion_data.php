@@ -52,6 +52,9 @@
             $connecter = true;
             
         }
+        $req->closeCursor();
+
+        
         if($num_assure > 0){
             
             session_start();
@@ -64,6 +67,20 @@
             $_SESSION['image'] = $image;
             $_SESSION['image_type'] = $image_type;
             $_SESSION['connecter'] = true;
+
+            $date = date("Y-m-d");
+            $req1 = $bd->prepare("SELECT message,dt_message FROM Notification WHERE id_client=:num_assure  ");
+            $req1->execute(array(
+                'num_assure'=>$_SESSION['numero']
+            ));
+            $i = 0;
+            while($data = $req1->fetch()){
+                $message = $data['message'];
+                $date = $data['dt_message'];
+                $i++;
+            }
+
+            $_SESSION['notification'] = $i;
             header("Location:acceuil.php");
             exit;
         }else{

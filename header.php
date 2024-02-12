@@ -58,6 +58,12 @@
         $connecter;
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
+            
+        }
+        if(isset($_SESSION['notification'])){
+            $not = $_SESSION['notification'];
+        }else{
+            $not = 0;
         }
         if(isset($_SESSION['connecter'])){
             $connecter = true;
@@ -73,7 +79,7 @@
                     if($connecter){
                         ?>
                          <li><a href="vehicule_data_saisie.php" class="active">Assurer</a></li>
-                         <li><a href="#" class="active">Notifications</a></li>
+                         <li><a href="notification.php" class="active">Notifications(<?php echo "$not"?>)</a></li>
                          <li><a href="profil.php" class="active">Profil</a></li>
                         <?php
                     }else{
